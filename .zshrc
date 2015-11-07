@@ -38,8 +38,8 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
 
 #Maybe replace the ^[[ with ; depending on what you see.
-bindkey ';5D' emacs-backward-word
-bindkey ';5C' emacs-forward-word
+bindkey "^[[1;3C" emacs-forward-word
+bindkey "^[[1;3D" emacs-backward-word
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -68,8 +68,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 setopt appendhistory autocd beep extendedglob nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -77,6 +77,12 @@ bindkey -e
 # enable the zmv command, for mass file renames
 autoload -U zmv
 
+alias ag='ag --color-match "1;31"' 
+alias ls='ls -F'
+
+# git crap
+git config --global alias.gl "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl='git gl'
+
 #Variables/more setopts:
 setopt HIST_IGNORE_DUPS AUTO_PUSHD PUSHDIGNOREDUPS
-#export PATH=${PATH}:/home/zbian2/Desktop/st2/
